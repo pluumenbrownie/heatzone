@@ -1,0 +1,155 @@
+/*
+Ver 1.2
+Live: 1-4-2019
+
+*/
+
+int thermostaat[6];
+int powerswitch[6];
+int powervalue = 0;
+int thermrequest[6];
+int thermprio[6];
+int masterrequest;
+int alreadyon[6] = {0,0,0,0,0,0};
+int actualon;
+int previousrequest[6] = {0,0,0,0,0,0};
+int counter = 0;
+int thermcounter = 0;
+int secondsdelay[6] = {0,0,0,0,0,0};
+int secondson[6] = {0,0,0,0,0,0};
+int maxvalue = 0;
+String screen = " ";
+
+void setup() {
+   
+   /* analogReference(INTERNAL); */
+   Serial.begin(9600);
+   
+   for (counter = 0; counter < 6; counter++){
+      powerswitch[counter] = counter+2;  // Start at digital output 2 and up
+      pinMode (powerswitch[counter], OUTPUT);
+      digitalWrite (powerswitch[counter], LOW);
+   }
+   
+   thermostaat[0] = A0;
+   thermostaat[1] = A1;
+   thermostaat[2] = A2;
+   thermostaat[3] = A3;
+   thermostaat[4] = A4;
+   thermostaat[5] = A5;
+   
+   thermprio[0] = 3; //Ground floor - Livingroom has highest prio
+   thermprio[1] = 2; //1st floor - bathroom has higher prio
+   thermprio[2] = 1; //1st floor - bedroom 3 has lower prio
+   thermprio[3] = 1; //1st floor - bedroom 2 has lower prio
+   thermprio[4] = 1; //1st floor - bedroom 1 has lower prio
+   thermprio[5] = 1; //2nd floor - whole has lower prio
+   
+   pinMode (LED_BUILTIN, OUTPUT);
+   
+   digitalWrite (LED_BUILTIN, LOW);
+   
+}
+
+void loop() {
+  
+  /* Voltage measurement. Detect thermostats that request heat. Thermostat sends 24v AC if heat requested
+  Voltage measurements AC vary, use 200 measurements and max value to get one measurement. 
+  */
+  
+    masterrequest = actualon; // pass on the groups that are actual on 
+    
+   
+    for (thermcounter = 0; thermcounter < 6; thermcounter++){
+      // Serial.print(thermcounter);
+      
+      maxvalue = 0;
+      
+      for (counter = 0; counter < 200; counter++){
+        
+        powervalue = analogRead(thermostaat[thermcounter]); 
+       
+        /* Determine maximum value in the array */
+        maxvalue = max(maxvalue, powervalue);
+      
+      }
+    
+  /* if max in the array is higher than 10, then therm requests heat, else no heat requested  valve open = powerswitch HIGH */
+    
+    
+    if (maxvalue > 200) {
+      thermrequest[thermcounter] = 1;
+      /* Calculate if enough prio for requesting heat at all */
+      if (alreadyon[thermcounter] == 0) masterrequest = masterrequest+thermprio[thermcounter];
+    }
+    else {
+      thermrequest[thermcounter] = 0;
+    }
+      
+    Serial.println(maxvalue);  
+    }
+    
+    screen = "[Therm 0]:" + String(thermrequest[0]) + " [Therm 1]:" + String(thermrequest[1]) + " [Therm 2]:" + String(thermrequest[2]) + " [Therm 3]:" + String(thermrequest[3]) + " [Therm 4]:" + String(thermrequest[4]) + " [Therm 5]:" + String(thermrequest[5]) + "Actual on:" + String(actualon);;
+    Serial.println(screen);
+    Serial.println(masterrequest);
+    
+    // show with the led if any of the thermostats request
+     
+    if (thermrequest[0]+thermrequest[1]+thermrequest[2]+thermrequest[3]+thermrequest[4]+thermrequest[5] > 0){ 
+      digitalWrite (LED_BUILTIN, HIGH);
+    }
+    else digitalWrite (LED_BUILTIN, LOW);
+
+    
+    /* Built in delay in the response of the switch, so valve stays open when thermostat request is lost
+       The valve should stay open for at least 10 minutes (600 seconds) after the last request from the thermostat 
+       A counter starts when the request for heat is terminated by the thermostat 
+       
+       There should be enough prio from the groups to activate, this is indicated by masterrequest, which should be at least 2 */
+       
+    actualon = 0; // reset how many groups are actual on 
+       
+    for (thermcounter = 0; thermcounter < 6; thermcounter++){
+      
+      switch (thermrequest[thermcounter]){
+        case 1:
+        // There is heat request, powerswitch should be on delaycounter reset
+        if (masterrequest > 2){ 
+          digitalWrite (powerswitch[thermcounter], HIGH);
+          secondsdelay[thermcounter] = 0;
+          ++secondson[thermcounter];
+          alreadyon[thermcounter] = 1; // keep track which groups are on
+        }
+        break;
+        case 0:
+        // There is no heat request, check if this was the state already, if so, check delay and masterrequest
+        // If priority became too low (masterrequest) then shut down heating
+        if (previousrequest[thermcounter] == 0){
+          if (secondsdelay[thermcounter] > 599) { 
+            digitalWrite (powerswitch[thermcounter], LOW);
+            secondsdelay[thermcounter] = 0;
+            alreadyon[thermcounter] = 0; //keep track which groups are on delay
+          }
+          else if(alreadyon[thermcounter] > 0) {
+            ++secondsdelay[thermcounter];
+          }
+        }
+        secondson[thermcounter] = 0;
+        // if (masterrequest < 3) digitalWrite (powerswitch[thermcounter], LOW);
+        break;
+      }
+    // save reqest state for next loop
+    
+    previousrequest[thermcounter] = thermrequest[thermcounter];
+    
+    if (alreadyon[thermcounter] == 1) actualon = actualon + thermprio[thermcounter]; // keep track how many groups are actual on, even if thermostats are not requesting
+    
+    screen = "[" + String(thermcounter) + "] on:" + String(secondson[thermcounter]) + "s, off in " + String(600 - secondsdelay[thermcounter]) + "s";
+    
+    Serial.println(screen);
+  
+    }
+
+  delay(1000); 
+    
+}

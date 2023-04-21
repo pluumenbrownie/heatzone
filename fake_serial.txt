@@ -1,0 +1,21 @@
+
+
+
+
+
+
+
+66
+28
+25
+19
+31
+40
+[Therm 0]:0 [Therm 1]:0 [Therm 2]:1 [Therm 3]:0 [Therm 4]:0 [Therm 5]:0Actual on:0
+1
+[0] on:0s, off in 598s
+[1] on:0s, off in 600s
+[2] on:0s, off in 600s
+[3] on:0s, off in 600s
+[4] on:0s, off in 600s
+[5] on:0s, off in 600s
