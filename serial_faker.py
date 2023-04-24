@@ -23,9 +23,7 @@ heating_zone.append(HeatingZone("Bedroom 2", 1))
 heating_zone.append(HeatingZone("Bedroom 3", 1))
 heating_zone.append(HeatingZone("Top floor", 1))
 
-# # with faker() as arduino:
-# while True:
-#     read_data = arduino.readline()
+
 for read_data in faker():
     if read_data:
         print(read_data)
