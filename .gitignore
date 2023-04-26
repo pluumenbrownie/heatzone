@@ -1,3 +1,4 @@
 .obsidian
+.vscode
 __pycache__
 flask_session
