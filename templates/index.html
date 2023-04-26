@@ -5,9 +5,22 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container text-start">
-        {% for zone in heatzonestrings %}
-            <p>{{ zone }}</p>
-        {% endfor %}
+    <!-- <img src="/static/full_house.svg" class="img-fluid" alt="full house"> -->
+    <div class="container">
+        <div class="row" style="position: relative;">
+        {# kleur via https://stackoverflow.com/questions/22252472/how-can-i-change-the-color-of-an-svg-element#53336754 en https://cdpn.io/sosuke/fullpage/Pjoqqp?anon=true&view= #}
+            <img src="/static/ground_floor.svg" style="position: relative;" alt="Ground floor">
+            <img src="/static/KM_bedroom.svg"   style="position: absolute;" alt="KM bedroom">
+            <img src="/static/bathroom.svg"     style="position: absolute;" alt="Bathroom">
+            <img src="/static/J_bedroom.svg"    style="position: absolute;filter: invert(12%) sepia(91%) saturate(5345%) hue-rotate(275deg) brightness(68%) contrast(142%);" alt="J bedroom">
+            <img src="/static/hallway.svg"      style="position: absolute;" alt="Hallway">
+            <img src="/static/blue_room.svg"    style="position: absolute;" alt="Blue room">
+            <img src="/static/top_floor.svg"    style="position: absolute;filter: invert(35%) sepia(61%) saturate(3602%) hue-rotate(12deg) brightness(96%) contrast(101%);" alt="Top floor">
+        </div>
+        <div class="row text-start">
+            {% for zone in heatzonestrings %}
+                <p>{{ zone }}</p>
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}
