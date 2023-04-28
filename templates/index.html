@@ -9,17 +9,17 @@
     <div class="container">
         <div class="row" style="position: relative;">
         {# kleur via https://stackoverflow.com/questions/22252472/how-can-i-change-the-color-of-an-svg-element#53336754 en https://cdpn.io/sosuke/fullpage/Pjoqqp?anon=true&view= #}
-            <img src="/static/ground_floor.svg" style="position: relative;" alt="Ground floor">
-            <img src="/static/KM_bedroom.svg"   style="position: absolute;" alt="KM bedroom">
-            <img src="/static/bathroom.svg"     style="position: absolute;" alt="Bathroom">
-            <img src="/static/J_bedroom.svg"    style="position: absolute;filter: invert(12%) sepia(91%) saturate(5345%) hue-rotate(275deg) brightness(68%) contrast(142%);" alt="J bedroom">
-            <img src="/static/hallway.svg"      style="position: absolute;" alt="Hallway">
-            <img src="/static/blue_room.svg"    style="position: absolute;" alt="Blue room">
-            <img src="/static/top_floor.svg"    style="position: absolute;filter: invert(35%) sepia(61%) saturate(3602%) hue-rotate(12deg) brightness(96%) contrast(101%);" alt="Top floor">
+            <img src="/static/ground_floor.svg" alt="Ground floor" class="floorplan_relative">
+            <img src="/static/KM_bedroom.svg" alt="KM bedroom"     class="floorplan">
+            <img src="/static/bathroom.svg" alt="Bathroom"         class="floorplan svg_purple">
+            <img src="/static/J_bedroom.svg" alt="J bedroom"       class="floorplan">
+            <img src="/static/hallway.svg" alt="Hallway"           class="floorplan">
+            <img src="/static/blue_room.svg" alt="Blue room"       class="floorplan svg_orange">
+            <img src="/static/top_floor.svg" alt="Top floor"       class="floorplan">
         </div>
         <div class="row text-start">
             {% for zone in heatzonestrings %}
-                <p>{{ zone }}</p>
+                <code>{{ zone }}</code>
             {% endfor %}
         </div>
     </div>

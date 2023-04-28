@@ -1,0 +1,18 @@
+
+
+
+.floorplan {
+    position: absolute;
+}
+
+.floorplan_relative {
+    position: relative;
+}
+
+.svg_purple {
+    filter: invert(12%) sepia(91%) saturate(5345%) hue-rotate(275deg) brightness(68%) contrast(142%);
+}
+
+.svg_orange {
+    filter: invert(35%) sepia(61%) saturate(3602%) hue-rotate(12deg) brightness(96%) contrast(101%);
+}
