@@ -6,10 +6,9 @@ from classes import *
 
 
 def real() -> Generator:
-    while True:
-        with serial.Serial(port="/dev/ttyACM0", baudrate=9600, timeout=0.1) as arduino:
-            while True:
-                yield arduino.readline()
+    with serial.Serial(port="/dev/ttyACM0", baudrate=9600, timeout=0.1) as arduino:
+        while True:
+            yield arduino.readline()
 
 
 def get_serial_data() -> list[HeatingZone]: # type: ignore
