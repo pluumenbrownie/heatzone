@@ -12,7 +12,7 @@ import requests
 from markupsafe import Markup
 
 from classes import *
-from serial_faker_thread import get_serial_data
+from serial_thread import get_serial_data
 
 
 app = Flask(__name__, static_url_path="/static")
