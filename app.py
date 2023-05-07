@@ -24,7 +24,7 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 
-def determine_color(heating_zone):
+def determine_color(heating_zone: HeatingZone) -> str | None:
     if heating_zone.heating:
         return "svg_orange"
     elif heating_zone.requesting:
@@ -34,5 +34,5 @@ def determine_color(heating_zone):
 @app.route("/")
 def index() -> str:
     data = get_serial_data()
-    data = [zone.__str__() for zone in data]
-    return render_template("index.html", heatzonestrings=data, zone_data=data, determine_color=determine_color)
+    strings = [zone.__str__() for zone in data]
+    return render_template("index.html", heatzonestrings=strings, zone_data=data, determine_color=determine_color)

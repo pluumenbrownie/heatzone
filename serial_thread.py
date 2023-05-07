@@ -13,7 +13,7 @@ def real() -> Generator:
 
 def get_serial_data() -> list[HeatingZone]: # type: ignore
     """
-    Returns list of `HeatZones` with fake data from `fake_serial.txt`
+    Returns list of `HeatZones` obtained from the Arduino.
     """
     heating_zone: list[HeatingZone] = []
     heating_zone.append(HeatingZone("Ground floor", 3))
