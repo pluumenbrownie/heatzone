@@ -7,7 +7,6 @@ from classes import *
 
 def real() -> Generator:
     while True:
-        time.sleep(1)
         with serial.Serial(port="/dev/ttyACM0", baudrate=9600, timeout=0.1) as arduino:
             while True:
                 yield arduino.readline()
