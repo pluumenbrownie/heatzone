@@ -22,9 +22,9 @@ def get_serial_data() -> list[HeatingZone]: # type: ignore
     heating_zone: list[HeatingZone] = []
     heating_zone.append(HeatingZone("Ground floor", 3))
     heating_zone.append(HeatingZone("Bathroom", 2))
-    heating_zone.append(HeatingZone("Bedroom 1", 1))
-    heating_zone.append(HeatingZone("Bedroom 2", 1))
-    heating_zone.append(HeatingZone("Bedroom 3", 1))
+    heating_zone.append(HeatingZone("Blue room", 1))
+    heating_zone.append(HeatingZone("J bedroom", 1))
+    heating_zone.append(HeatingZone("KM bedroom", 1))
     heating_zone.append(HeatingZone("Top floor", 1))
 
     full_cycle = False
