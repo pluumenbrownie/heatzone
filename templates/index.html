@@ -9,13 +9,13 @@
     <div class="container">
         <div class="row" style="position: relative;">
         {# kleur via https://stackoverflow.com/questions/22252472/how-can-i-change-the-color-of-an-svg-element#53336754 en https://cdpn.io/sosuke/fullpage/Pjoqqp?anon=true&view= #}
-            <img src="/static/ground_floor.svg" alt="Ground floor" class="floorplan_relative">
-            <img src="/static/KM_bedroom.svg" alt="KM bedroom"     class="floorplan">
-            <img src="/static/bathroom.svg" alt="Bathroom"         class="floorplan svg_purple">
-            <img src="/static/J_bedroom.svg" alt="J bedroom"       class="floorplan">
+            <img src="/static/ground_floor.svg" alt="Ground floor" class="floorplan_relative {{ determine_color(zone_data[0]) }}">
+            <img src="/static/KM_bedroom.svg" alt="KM bedroom"     class="floorplan {{ determine_color(zone_data[2]) }}">
+            <img src="/static/bathroom.svg" alt="Bathroom"         class="floorplan {{ determine_color(zone_data[1]) }}">
+            <img src="/static/J_bedroom.svg" alt="J bedroom"       class="floorplan {{ determine_color(zone_data[3]) }}">
             <img src="/static/hallway.svg" alt="Hallway"           class="floorplan">
-            <img src="/static/blue_room.svg" alt="Blue room"       class="floorplan svg_orange">
-            <img src="/static/top_floor.svg" alt="Top floor"       class="floorplan">
+            <img src="/static/blue_room.svg" alt="Blue room"       class="floorplan {{ determine_color(zone_data[4]) }}">
+            <img src="/static/top_floor.svg" alt="Top floor"       class="floorplan {{ determine_color(zone_data[5]) }}">
         </div>
         <div class="row text-start">
             {% for zone in heatzonestrings %}
