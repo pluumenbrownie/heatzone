@@ -28,6 +28,7 @@ def get_serial_data() -> list[HeatingZone]: # type: ignore
     full_cycle = False
     for read_data in real():
 
+        print(read_data)
         if len(read_data) < 8:
             continue
         elif read_data[0:3] == b"[Th":
