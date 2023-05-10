@@ -9,18 +9,58 @@
     <div class="container">
         <div class="row" style="position: relative;">
         {# kleur via https://stackoverflow.com/questions/22252472/how-can-i-change-the-color-of-an-svg-element#53336754 en https://cdpn.io/sosuke/fullpage/Pjoqqp?anon=true&view= #}
-            <img src="/static/ground_floor.svg" alt="Ground floor" class="floorplan_relative {{ determine_color(zone_data[0]) }}">
-            <img src="/static/KM_bedroom.svg" alt="KM bedroom"     class="floorplan {{ determine_color(zone_data[4]) }}">
-            <img src="/static/bathroom.svg" alt="Bathroom"         class="floorplan {{ determine_color(zone_data[1]) }}">
-            <img src="/static/J_bedroom.svg" alt="J bedroom"       class="floorplan {{ determine_color(zone_data[3]) }}">
-            <img src="/static/hallway.svg" alt="Hallway"           class="floorplan">
-            <img src="/static/blue_room.svg" alt="Blue room"       class="floorplan {{ determine_color(zone_data[2]) }}">
-            <img src="/static/top_floor.svg" alt="Top floor"       class="floorplan {{ determine_color(zone_data[5]) }}">
+            <img src="/static/ground_floor.svg" alt="Ground floor" id="Ground floor" class="floorplan_relative">
+            <img src="/static/KM_bedroom.svg"   alt="KM bedroom"   id="KM bedroom"   class="floorplan">
+            <img src="/static/bathroom.svg"     alt="Bathroom"     id="Bathroom"     class="floorplan">
+            <img src="/static/J_bedroom.svg"    alt="J bedroom"    id="J bedroom"    class="floorplan">
+            <img src="/static/hallway.svg"      alt="Hallway"      id="Hallway"      class="floorplan">
+            <img src="/static/blue_room.svg"    alt="Blue room"    id="Blue room"    class="floorplan">
+            <img src="/static/top_floor.svg"    alt="Top floor"    id="Top floor"    class="floorplan">
         </div>
         <div class="row text-start">
-            {% for zone in heatzonestrings %}
+            <p id="time">time</p>
+            <!-- {% for zone in heatzonestrings %}
                 <code>{{ zone }}</code>
-            {% endfor %}
+            {% endfor %} -->
         </div>
+        <script>
+            var ground_floor = document.getElementById("Ground floor");
+            var bathroom = document.getElementById("Bathroom");
+            var blue_room = document.getElementById("Blue room");
+            var j_bedroom = document.getElementById("J bedroom");
+            var km_bedroom = document.getElementById("KM bedroom");
+            var top_floor = document.getElementById("Top floor");
+            var time_text = document.getElementById("time");
+            setInterval(runUpdate, 1000);
+
+            function runUpdate() {
+                update("http://127.0.0.1:5000/_get_status");
+            }
+
+            async function update(link) {
+                let promise = await fetch(link);
+                let jsonfile = await promise.json();
+                
+                if (jsonfile["ground_floor_class"] !== "") {
+                    ground_floor.classList.add(jsonfile["ground_floor_class"]);
+                }
+                if (jsonfile["bathroom_class"] !== "") {
+                    bathroom.classList.add(jsonfile["bathroom_class"]);
+                }
+                if (jsonfile["blue_room_class"] !== "") {
+                    blue_room.classList.add(jsonfile["blue_room_class"]);
+                }
+                if (jsonfile["j_bedroom_class"] !== "") {
+                    j_bedroom.classList.add(jsonfile["j_bedroom_class"]);
+                }
+                if (jsonfile["km_bedroom_class"] !== "") {
+                    km_bedroom.classList.add(jsonfile["km_bedroom_class"]);
+                }
+                if (jsonfile["top_floor_class"] !== "") {
+                    top_floor.classList.add(jsonfile["top_floor_class"]);
+                }
+                time_text.innerHTML = jsonfile["timecode"];
+            }
+        </script>
     </div>
 {% endblock %}
