@@ -43,24 +43,40 @@
                 
                 if (jsonfile["ground_floor_class"] !== "") {
                     ground_floor.classList.add(jsonfile["ground_floor_class"]);
+                } else {
+                    ground_floor.classList.remove("svg_purple", "svg_orange");
                 }
+
                 if (jsonfile["bathroom_class"] !== "") {
                     bathroom.classList.add(jsonfile["bathroom_class"]);
+                } else {
+                    bathroom.classList.remove("svg_purple", "svg_orange");
                 }
+
                 if (jsonfile["blue_room_class"] !== "") {
                     blue_room.classList.add(jsonfile["blue_room_class"]);
+                } else {
+                    blue_room.classList.remove("svg_purple", "svg_orange");
                 }
+
                 if (jsonfile["j_bedroom_class"] !== "") {
                     j_bedroom.classList.add(jsonfile["j_bedroom_class"]);
+                } else {
+                    j_bedroom.classList.remove("svg_purple", "svg_orange");
                 }
+
                 if (jsonfile["km_bedroom_class"] !== "") {
                     km_bedroom.classList.add(jsonfile["km_bedroom_class"]);
+                } else  {
+                    km_bedroom.classList.remove("svg_purple", "svg_orange");
                 }
+
                 if (jsonfile["top_floor_class"] !== "") {
                     top_floor.classList.add(jsonfile["top_floor_class"]);
                 } else {
                     top_floor.classList.remove("svg_purple", "svg_orange");
                 }
+                
                 time_text.innerHTML = jsonfile["timecode"];
             }
         </script>
