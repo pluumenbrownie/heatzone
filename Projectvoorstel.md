@@ -1,4 +1,4 @@
-e# Projectvoorstel: Beumerverwarming
+# Projectvoorstel: Beumerverwarming
 Door Wessel Beumer
 
 ## Het probleem:
