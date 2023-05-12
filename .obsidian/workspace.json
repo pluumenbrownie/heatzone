@@ -64,6 +64,14 @@
               "type": "starred",
               "state": {}
             }
+          },
+          {
+            "id": "5f1c3a25df0919ef",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
           }
         ]
       }
@@ -148,6 +156,7 @@
   },
   "active": "8e80ea762d267586",
   "lastOpenFiles": [
+    "setup_database.py",
     "serial_test.py",
     "proposal.zip",
     "schets_voor_kleiner.png",
