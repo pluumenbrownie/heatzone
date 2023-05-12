@@ -11,9 +11,324 @@
 19
 31
 40
-[Therm 0]:0 [Therm 1]:0 [Therm 2]:1 [Therm 3]:0 [Therm 4]:0 [Therm 5]:0Actual on:0
+[Therm 0]:0 [Therm 1]:0 [Therm 2]:0 [Therm 3]:0 [Therm 4]:0 [Therm 5]:0Actual on:0
+0
+[0] on:0s, off in 600s
+[1] on:0s, off in 600s
+[2] on:0s, off in 600s
+[3] on:0s, off in 600s
+[4] on:0s, off in 600s
+[5] on:0s, off in 600s
+
+
+
+
+
+
+
+66
+28
+25
+19
+31
+40
+[Therm 0]:0 [Therm 1]:0 [Therm 2]:0 [Therm 3]:0 [Therm 4]:0 [Therm 5]:0Actual on:0
+0
+[0] on:0s, off in 600s
+[1] on:0s, off in 600s
+[2] on:0s, off in 600s
+[3] on:0s, off in 600s
+[4] on:0s, off in 600s
+[5] on:0s, off in 600s
+
+
+
+
+
+
+
+66
+28
+25
+19
+31
+40
+[Therm 0]:0 [Therm 1]:0 [Therm 2]:0 [Therm 3]:0 [Therm 4]:0 [Therm 5]:0Actual on:0
+0
+[0] on:0s, off in 600s
+[1] on:0s, off in 600s
+[2] on:0s, off in 600s
+[3] on:0s, off in 600s
+[4] on:0s, off in 600s
+[5] on:0s, off in 600s
+
+
+
+
+
+
+
+66
+28
+25
+19
+31
+40
+[Therm 0]:0 [Therm 1]:0 [Therm 2]:0 [Therm 3]:0 [Therm 4]:1 [Therm 5]:0Actual on:0
 1
-[0] on:0s, off in 598s
+[0] on:0s, off in 600s
+[1] on:0s, off in 600s
+[2] on:0s, off in 600s
+[3] on:0s, off in 600s
+[4] on:0s, off in 600s
+[5] on:0s, off in 600s
+
+
+
+
+
+
+
+66
+28
+25
+19
+31
+40
+[Therm 0]:0 [Therm 1]:0 [Therm 2]:0 [Therm 3]:0 [Therm 4]:1 [Therm 5]:1Actual on:0
+2
+[0] on:0s, off in 600s
+[1] on:0s, off in 600s
+[2] on:0s, off in 600s
+[3] on:0s, off in 600s
+[4] on:0s, off in 600s
+[5] on:0s, off in 600s
+
+
+
+
+
+
+
+66
+28
+25
+19
+31
+40
+[Therm 0]:0 [Therm 1]:0 [Therm 2]:0 [Therm 3]:0 [Therm 4]:1 [Therm 5]:1Actual on:0
+2
+[0] on:0s, off in 600s
+[1] on:0s, off in 600s
+[2] on:0s, off in 600s
+[3] on:0s, off in 600s
+[4] on:0s, off in 600s
+[5] on:0s, off in 600s
+
+
+
+
+
+
+
+66
+28
+25
+19
+31
+40
+[Therm 0]:0 [Therm 1]:0 [Therm 2]:0 [Therm 3]:1 [Therm 4]:1 [Therm 5]:1Actual on:0
+3
+[0] on:0s, off in 600s
+[1] on:0s, off in 600s
+[2] on:0s, off in 600s
+[3] on:1s, off in 600s
+[4] on:1s, off in 600s
+[5] on:1s, off in 600s
+
+
+
+
+
+
+
+66
+28
+25
+19
+31
+40
+[Therm 0]:0 [Therm 1]:0 [Therm 2]:0 [Therm 3]:1 [Therm 4]:1 [Therm 5]:1Actual on:0
+3
+[0] on:0s, off in 600s
+[1] on:0s, off in 600s
+[2] on:0s, off in 600s
+[3] on:2s, off in 600s
+[4] on:2s, off in 600s
+[5] on:2s, off in 600s
+
+
+
+
+
+
+
+66
+28
+25
+19
+31
+40
+[Therm 0]:0 [Therm 1]:0 [Therm 2]:0 [Therm 3]:0 [Therm 4]:0 [Therm 5]:0Actual on:0
+0
+[0] on:0s, off in 600s
+[1] on:0s, off in 600s
+[2] on:0s, off in 600s
+[3] on:0s, off in 599s
+[4] on:0s, off in 599s
+[5] on:0s, off in 599s
+
+
+
+
+
+
+
+66
+28
+25
+19
+31
+40
+[Therm 0]:0 [Therm 1]:0 [Therm 2]:0 [Therm 3]:0 [Therm 4]:0 [Therm 5]:0Actual on:0
+0
+[0] on:0s, off in 600s
+[1] on:0s, off in 600s
+[2] on:0s, off in 600s
+[3] on:0s, off in 598s
+[4] on:0s, off in 598s
+[5] on:0s, off in 598s
+
+
+
+
+
+
+
+66
+28
+25
+19
+31
+40
+[Therm 0]:0 [Therm 1]:0 [Therm 2]:0 [Therm 3]:0 [Therm 4]:0 [Therm 5]:0Actual on:0
+0
+[0] on:0s, off in 600s
+[1] on:0s, off in 600s
+[2] on:0s, off in 600s
+[3] on:0s, off in 597s
+[4] on:0s, off in 597s
+[5] on:0s, off in 597s
+
+
+
+
+
+
+
+66
+28
+25
+19
+31
+40
+[Therm 0]:0 [Therm 1]:0 [Therm 2]:0 [Therm 3]:0 [Therm 4]:0 [Therm 5]:0Actual on:0
+0
+[0] on:0s, off in 600s
+[1] on:0s, off in 600s
+[2] on:0s, off in 600s
+[3] on:0s, off in 2s
+[4] on:0s, off in 2s
+[5] on:0s, off in 2s
+
+
+
+
+
+
+
+66
+28
+25
+19
+31
+40
+[Therm 0]:0 [Therm 1]:0 [Therm 2]:0 [Therm 3]:0 [Therm 4]:0 [Therm 5]:0Actual on:0
+0
+[0] on:0s, off in 600s
+[1] on:0s, off in 600s
+[2] on:0s, off in 600s
+[3] on:0s, off in 1s
+[4] on:0s, off in 1s
+[5] on:0s, off in 1s
+
+
+
+
+
+
+
+66
+28
+25
+19
+31
+40
+[Therm 0]:0 [Therm 1]:0 [Therm 2]:0 [Therm 3]:0 [Therm 4]:0 [Therm 5]:0Actual on:0
+0
+[0] on:0s, off in 600s
+[1] on:0s, off in 600s
+[2] on:0s, off in 600s
+[3] on:0s, off in 600s
+[4] on:0s, off in 600s
+[5] on:0s, off in 600s
+
+
+
+
+
+
+
+66
+28
+25
+19
+31
+40
+[Therm 0]:0 [Therm 1]:0 [Therm 2]:0 [Therm 3]:0 [Therm 4]:0 [Therm 5]:0Actual on:0
+0
+[0] on:0s, off in 600s
+[1] on:0s, off in 600s
+[2] on:0s, off in 600s
+[3] on:0s, off in 600s
+[4] on:0s, off in 600s
+[5] on:0s, off in 600s
+
+
+
+
+
+
+
+66
+28
+25
+19
+31
+40
+[Therm 0]:0 [Therm 1]:0 [Therm 2]:0 [Therm 3]:0 [Therm 4]:0 [Therm 5]:0Actual on:0
+0
+[0] on:0s, off in 600s
 [1] on:0s, off in 600s
 [2] on:0s, off in 600s
 [3] on:0s, off in 600s

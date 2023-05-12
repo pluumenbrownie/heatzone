@@ -39,11 +39,12 @@ class FakeArduino():
 
     def faker(self) -> Generator:
         while True:
-            time.sleep(1)
             with open("fake_serial.txt", "rb") as file:
                 lines = file.readlines()
                 for line in lines:
                     time.sleep(0.01)
+                    if line == b'\r\n':
+                        time.sleep(0.18)
                     yield line
     
     def readline(self):

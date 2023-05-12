@@ -31,54 +31,57 @@
             var km_bedroom = document.getElementById("KM bedroom");
             var top_floor = document.getElementById("Top floor");
             var time_text = document.getElementById("time");
+            let ip = "{{ data_ip|safe }}";
+            console.log(ip);
             setInterval(runUpdate, 1000);
 
             function runUpdate() {
-                update("http://192.168.1.135:5000/_get_status");
+                update(ip);
             }
 
             async function update(link) {
                 let promise = await fetch(link);
                 let jsonfile = await promise.json();
+                console.log(jsonfile);
                 
                 if (jsonfile["ground_floor_class"] !== "") {
                     ground_floor.classList.add(jsonfile["ground_floor_class"]);
                 } else {
                     ground_floor.classList.remove("svg_purple", "svg_orange");
-                }
+                };
 
                 if (jsonfile["bathroom_class"] !== "") {
                     bathroom.classList.add(jsonfile["bathroom_class"]);
                 } else {
                     bathroom.classList.remove("svg_purple", "svg_orange");
-                }
+                };
 
                 if (jsonfile["blue_room_class"] !== "") {
                     blue_room.classList.add(jsonfile["blue_room_class"]);
                 } else {
                     blue_room.classList.remove("svg_purple", "svg_orange");
-                }
+                };
 
                 if (jsonfile["j_bedroom_class"] !== "") {
                     j_bedroom.classList.add(jsonfile["j_bedroom_class"]);
                 } else {
                     j_bedroom.classList.remove("svg_purple", "svg_orange");
-                }
+                };
 
                 if (jsonfile["km_bedroom_class"] !== "") {
                     km_bedroom.classList.add(jsonfile["km_bedroom_class"]);
                 } else  {
                     km_bedroom.classList.remove("svg_purple", "svg_orange");
-                }
+                };
 
                 if (jsonfile["top_floor_class"] !== "") {
                     top_floor.classList.add(jsonfile["top_floor_class"]);
                 } else {
                     top_floor.classList.remove("svg_purple", "svg_orange");
-                }
+                };
                 
                 time_text.innerHTML = jsonfile["timecode"];
-            }
+            };
         </script>
     </div>
 {% endblock %}

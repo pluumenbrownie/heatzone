@@ -46,7 +46,12 @@ def determine_color(heating_zone: HeatingZone) -> str | None:
 
 @app.route("/")
 def index() -> str:
-    return render_template("index.html")
+    return render_template("index.html", data_ip="http://192.168.1.135:5000/_get_status")
+    
+
+@app.route("/fake")
+def fake_index() -> str:
+    return render_template("index.html", data_ip="http://127.0.0.1:5000/_get_status")
 
 
 @app.route("/_get_status")
@@ -54,7 +59,7 @@ def get_status() -> str:
     with engine.begin() as db:
         output = db.execute(sql.text("SELECT * FROM direct_history ORDER BY timecode DESC LIMIT 1")).first()
     dictionary: dict[str, str|int|bool] = {}
-
+ 
     if not output:
         return "error"
     
