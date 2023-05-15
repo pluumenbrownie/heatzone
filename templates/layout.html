@@ -14,13 +14,19 @@
     </head>
 
     <body>
-        <!-- <nav class="bg-light border navbar navbar-expand-md navbar-light">
-        <div class="container-fluid">   
-            <button aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbar" data-bs-toggle="collapse" type="button">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbar">
-            {% if session["user_id"] %}
+        <nav class="bg-light border navbar navbar-expand-md navbar-light">
+            <div class="container-fluid">   
+                <button aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbar" data-bs-toggle="collapse" type="button">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbar">
+                    <ul class="navbar-nav ms-auto me-auto mb-lg-0">
+                        <li class="nav-item"> <a class="nav-link" href="#"> Overzicht </a></li>
+                        <li class="nav-item"> <a class="nav-link" href="#"> Geschiedenis </a></li>
+                    </ul>
+                </div>
+                <span class="navbar-brand mb-0 h1"> {% block clockblock %}{% endblock %} </span>
+            <!-- {% if session["user_id"] %}
                 <ul class="navbar-nav me-auto mt-2">
                     <li class="nav-item"><a class="nav-link" href="/search">Search</a></li>
                 </ul>
@@ -36,10 +42,9 @@
                     <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
                     <li class="nav-item"><a class="nav-link" href="/login">Log In</a></li>
                 </ul>
-            {% endif %}
+            {% endif %} -->
             </div>
-        </div>
-        </nav> -->
+        </nav>
 
     {% if get_flashed_messages() %}
         <header>
@@ -53,7 +58,7 @@
             {% block content %}{% endblock %}
         </main>
 
-        <footer class="mb-5 small text-center text-muted">
+        <footer class="small text-center text-muted">
             This is a certified <strong>pluumenbrownie</strong> project.
         </footer>
     </body>

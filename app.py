@@ -62,6 +62,7 @@ def get_status() -> str:
         dictionary[name] = value
 
     add_colors_to_dict(dictionary)
+    dictionary["timecode"] = time.strftime("%H:%M:%S %d-%m-%Y", time.localtime(float(dictionary["timecode"]) / 10)).__str__()
     
     return json.dumps(dictionary)
 

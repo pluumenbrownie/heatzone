@@ -1,12 +1,33 @@
 
+body {
+    height: 100vh;
+}
 
+nav {
+    height: 4em;
+}
+
+main {
+    height: calc(100% - 7em);
+}
+
+footer {
+    height: 3em;
+}
+
+img {
+    height: 100%;
+    width: 100%;
+}
 
 .floorplan {
     position: absolute;
+    object-fit: contain;
 }
 
 .floorplan_relative {
     position: relative;
+    object-fit: contain;
 }
 
 .svg_purple {

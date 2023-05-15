@@ -4,10 +4,14 @@
     indexpage
 {% endblock %}
 
+{% block clockblock %}
+<p id="time" class="mb-0">time</p>
+{% endblock %}
+
 {% block content %}
     <!-- <img src="/static/full_house.svg" class="img-fluid" alt="full house"> -->
-    <div class="container">
-        <div class="row" style="position: relative;">
+    <div class="container h-100">
+        <div class="row h-100" style="position: relative;">
         {# kleur via https://stackoverflow.com/questions/22252472/how-can-i-change-the-color-of-an-svg-element#53336754 en https://cdpn.io/sosuke/fullpage/Pjoqqp?anon=true&view= #}
             <img src="/static/ground_floor.svg" alt="Ground floor" id="Ground floor" class="floorplan_relative">
             <img src="/static/KM_bedroom.svg"   alt="KM bedroom"   id="KM bedroom"   class="floorplan">
@@ -17,12 +21,12 @@
             <img src="/static/blue_room.svg"    alt="Blue room"    id="Blue room"    class="floorplan">
             <img src="/static/top_floor.svg"    alt="Top floor"    id="Top floor"    class="floorplan">
         </div>
-        <div class="row text-start">
-            <p id="time">time</p>
+        {# <div class="row text-start">
+            
             <!-- {% for zone in heatzonestrings %}
                 <code>{{ zone }}</code>
             {% endfor %} -->
-        </div>
+        </div> #}
         <script>
             var ground_floor = document.getElementById("Ground floor");
             var bathroom = document.getElementById("Bathroom");
@@ -40,8 +44,16 @@
                 update(ip);
             }
 
+            function updateRoom(room, color) {
+                if (color !== "") {
+                    ground_floor.classList.add(jsonfile["ground_floor_class"]);
+                } else {
+                    ground_floor.classList.remove("svg_purple", "svg_orange");
+                };
+            }
+
             async function update(link) {
-                let promise = await fetch(link);
+                let promise = await fetch(link, { signal: AbortSignal.timeout(1000) });
                 let jsonfile = await promise.json();
                 console.log(jsonfile);
                 
