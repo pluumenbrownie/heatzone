@@ -26,7 +26,6 @@ INSERT_VALUE_STRING = "(:timecode,\
 :top_floor_requesting, :top_floor_heating, :top_floor_time_heating, :top_floor_delay)"
 
 
-
 heating_zone: list[HeatingZone] = []
 heating_zone.append(HeatingZone("Ground floor", 3))
 heating_zone.append(HeatingZone("Bathroom", 2))
