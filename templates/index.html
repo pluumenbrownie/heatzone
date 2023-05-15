@@ -33,6 +33,7 @@
             var time_text = document.getElementById("time");
             let ip = "{{ data_ip|safe }}";
             console.log(ip);
+            runUpdate();
             setInterval(runUpdate, 1000);
 
             function runUpdate() {
