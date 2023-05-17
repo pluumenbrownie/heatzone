@@ -23,11 +23,11 @@ img {
 .floorplan {
     position: absolute;
     object-fit: contain;
+    padding: 0%;
 }
 
-.floorplan_relative {
-    position: relative;
-    object-fit: contain;
+.relative {
+    position: relative !important;
 }
 
 .svg_purple {
@@ -36,4 +36,24 @@ img {
 
 .svg_orange {
     filter: invert(35%) sepia(61%) saturate(3602%) hue-rotate(12deg) brightness(96%) contrast(101%);
+}
+
+#room_buttons svg {
+    height: 100%;
+    max-width: 100%;
+    text-align: center;
+    aspect-ratio: 1;
+}
+
+#room_buttons {
+    position: absolute;
+    max-height: 100%;
+    aspect-ratio: 1;
+    /* width: 100%; */
+}
+
+polygon {
+    fill: black;
+    stroke: none;
+    opacity: 0;
 }

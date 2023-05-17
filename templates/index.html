@@ -10,23 +10,28 @@
 
 {% block content %}
     <!-- <img src="/static/full_house.svg" class="img-fluid" alt="full house"> -->
-    <div class="container h-100">
-        <div class="row h-100" style="position: relative;">
+    <div class="container-flex h-100">
+        <div class="row h-100 mx-2 align-items-center" style="position: relative;">
         {# kleur via https://stackoverflow.com/questions/22252472/how-can-i-change-the-color-of-an-svg-element#53336754 en https://cdpn.io/sosuke/fullpage/Pjoqqp?anon=true&view= #}
-            <img src="/static/ground_floor.svg" alt="Ground floor" id="Ground floor" class="floorplan_relative">
+            <img src="/static/ground_floor.svg" alt="Ground floor" id="Ground floor" class="floorplan relative">
             <img src="/static/KM_bedroom.svg"   alt="KM bedroom"   id="KM bedroom"   class="floorplan">
             <img src="/static/bathroom.svg"     alt="Bathroom"     id="Bathroom"     class="floorplan">
             <img src="/static/J_bedroom.svg"    alt="J bedroom"    id="J bedroom"    class="floorplan">
             <img src="/static/hallway.svg"      alt="Hallway"      id="Hallway"      class="floorplan">
             <img src="/static/blue_room.svg"    alt="Blue room"    id="Blue room"    class="floorplan">
             <img src="/static/top_floor.svg"    alt="Top floor"    id="Top floor"    class="floorplan">
+            <figure id="room_buttons" class="mb-0 px-0 align-items-center">
+                <svg preserveAspectRatio="xMidYMid meet" viewbox="0 0 1080 1080">
+                    {# <rect width="100%" height="100%" style="fill:none;stroke-width:2;stroke:rgb(0,0,0)" /> #}
+                    <a xlink:href="/link1" title="title"><polygon points="967,156 494,358 183,210 661,11" /></a>
+                    <a xlink:href="/link2" title="title"><polygon points="909,374 621,497 392,393 429,374 493,400 740,299" /></a>
+                    <a xlink:href="/link3" title="title"><polygon points="918,386 1064,452 1064,492 854,581 715,517 712,469" /></a>
+                    <a xlink:href="/link4" title="title"><polygon points="611,504 382,397 88,514 87,557 227,621 245,611 287,611 501,517 541,539" /></a>
+                    <a xlink:href="/link5" title="title"><polygon points="293,609 498,525 683,612 683,648 476,732 289,644" /></a>
+                    <a xlink:href="/link6" title="title"><polygon points="1064,794 409,1072 23,893 25,719 214,641 477,764 792,629 1060,758" /></a>
+                </svg>
+            </figure>
         </div>
-        {# <div class="row text-start">
-            
-            <!-- {% for zone in heatzonestrings %}
-                <code>{{ zone }}</code>
-            {% endfor %} -->
-        </div> #}
         <script>
             var ground_floor = document.getElementById("Ground floor");
             var bathroom = document.getElementById("Bathroom");
@@ -55,7 +60,7 @@
             async function update(link) {
                 let promise = await fetch(link, { signal: AbortSignal.timeout(1000) });
                 let jsonfile = await promise.json();
-                console.log(jsonfile);
+                console.info(jsonfile);
                 
                 if (jsonfile["ground_floor_class"] !== "") {
                     ground_floor.classList.add(jsonfile["ground_floor_class"]);
