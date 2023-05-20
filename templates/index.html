@@ -22,84 +22,90 @@
             <img src="/static/top_floor.svg"    alt="Top floor"    id="Top floor"    class="floorplan">
             <figure id="room_buttons" class="mb-0 px-0 align-items-center">
                 <svg preserveAspectRatio="xMidYMid meet" viewbox="0 0 1080 1080">
-                    {# <rect width="100%" height="100%" style="fill:none;stroke-width:2;stroke:rgb(0,0,0)" /> #}
-                    <a xlink:href="/link1" title="title"><polygon points="967,156 494,358 183,210 661,11" /></a>
-                    <a xlink:href="/link2" title="title"><polygon points="909,374 621,497 392,393 429,374 493,400 740,299" /></a>
-                    <a xlink:href="/link3" title="title"><polygon points="918,386 1064,452 1064,492 854,581 715,517 712,469" /></a>
-                    <a xlink:href="/link4" title="title"><polygon points="611,504 382,397 88,514 87,557 227,621 245,611 287,611 501,517 541,539" /></a>
-                    <a xlink:href="/link5" title="title"><polygon points="293,609 498,525 683,612 683,648 476,732 289,644" /></a>
-                    <a xlink:href="/link6" title="title"><polygon points="1064,794 409,1072 23,893 25,719 214,641 477,764 792,629 1060,758" /></a>
+                    <!-- <rect width="100%" height="100%" style="fill:none;stroke-width:2;stroke:rgb(0,0,0)" /> -->
+                    <a href="/fake/test_canvas#ground_floor" title="Ground floor"><polygon points="1064,794 409,1072 23,893 25,719 214,641 477,764 792,629 1060,758" /></a>
+                    <a href="/fake/test_canvas#km_bedroom"  title="KM bedroom"><polygon points="909,374 621,497 392,393 429,374 493,400 740,299" /></a>
+                    <a href="/fake/test_canvas#bathroom" title="Bathroom"><polygon points="918,386 1064,452 1064,492 854,581 715,517 712,469" /></a>
+                    <a href="/fake/test_canvas#j_bedroom" title="J bedroom"><polygon points="611,504 382,397 88,514 87,557 227,621 245,611 287,611 501,517 541,539" /></a>
+                    <a href="/fake/test_canvas#blue_room" title="Blue room"><polygon points="293,609 498,525 683,612 683,648 476,732 289,644" /></a>
+                    <a href="/fake/test_canvas#top_floor" title="Top floor"><polygon points="967,156 494,358 183,210 661,11" /></a>
                 </svg>
             </figure>
         </div>
-        <script>
-            var ground_floor = document.getElementById("Ground floor");
-            var bathroom = document.getElementById("Bathroom");
-            var blue_room = document.getElementById("Blue room");
-            var j_bedroom = document.getElementById("J bedroom");
-            var km_bedroom = document.getElementById("KM bedroom");
-            var top_floor = document.getElementById("Top floor");
-            var time_text = document.getElementById("time");
-            let ip = "{{ data_ip|safe }}";
-            console.log(ip);
-            runUpdate();
-            setInterval(runUpdate, 1000);
-
-            function runUpdate() {
-                update(ip);
-            }
-
-            function updateRoom(room, color) {
-                if (color !== "") {
-                    ground_floor.classList.add(jsonfile["ground_floor_class"]);
-                } else {
-                    ground_floor.classList.remove("svg_purple", "svg_orange");
-                };
-            }
-
-            async function update(link) {
-                let promise = await fetch(link, { signal: AbortSignal.timeout(1000) });
-                let jsonfile = await promise.json();
-                console.info(jsonfile);
-                
-                if (jsonfile["ground_floor_class"] !== "") {
-                    ground_floor.classList.add(jsonfile["ground_floor_class"]);
-                } else {
-                    ground_floor.classList.remove("svg_purple", "svg_orange");
-                };
-
-                if (jsonfile["bathroom_class"] !== "") {
-                    bathroom.classList.add(jsonfile["bathroom_class"]);
-                } else {
-                    bathroom.classList.remove("svg_purple", "svg_orange");
-                };
-
-                if (jsonfile["blue_room_class"] !== "") {
-                    blue_room.classList.add(jsonfile["blue_room_class"]);
-                } else {
-                    blue_room.classList.remove("svg_purple", "svg_orange");
-                };
-
-                if (jsonfile["j_bedroom_class"] !== "") {
-                    j_bedroom.classList.add(jsonfile["j_bedroom_class"]);
-                } else {
-                    j_bedroom.classList.remove("svg_purple", "svg_orange");
-                };
-
-                if (jsonfile["km_bedroom_class"] !== "") {
-                    km_bedroom.classList.add(jsonfile["km_bedroom_class"]);
-                } else  {
-                    km_bedroom.classList.remove("svg_purple", "svg_orange");
-                };
-
-                if (jsonfile["top_floor_class"] !== "") {
-                    top_floor.classList.add(jsonfile["top_floor_class"]);
-                } else {
-                    top_floor.classList.remove("svg_purple", "svg_orange");
-                };
-                
-                time_text.innerHTML = jsonfile["timecode"];
-            };
-        </script>
     </div>
+
+    {% block offcanvas_content %}{% endblock %}
+    
+    <script>
+        var ground_floor = document.getElementById("Ground floor");
+        var bathroom = document.getElementById("Bathroom");
+        var blue_room = document.getElementById("Blue room");
+        var j_bedroom = document.getElementById("J bedroom");
+        var km_bedroom = document.getElementById("KM bedroom");
+        var top_floor = document.getElementById("Top floor");
+        var time_text = document.getElementById("time");
+        let ip = "{{ data_ip|safe }}";
+        console.log(ip);
+        runUpdate();
+        setInterval(runUpdate, 1000);
+        {% block offcanvas_script %}{% endblock %}
+
+        function runUpdate() {
+            update(ip);
+        }
+
+        function updateRoom(room, color) {
+            if (color !== "") {
+                ground_floor.classList.add(jsonfile["ground_floor_class"]);
+            } else {
+                ground_floor.classList.remove("svg_purple", "svg_orange");
+            };
+        }
+
+        async function update(link) {
+            let promise = await fetch(link, { signal: AbortSignal.timeout(1000) });
+            let jsonfile = await promise.json();
+            console.info(jsonfile);
+            
+            if (jsonfile["ground_floor_class"] !== "") {
+                ground_floor.classList.add(jsonfile["ground_floor_class"]);
+            } else {
+                ground_floor.classList.remove("svg_purple", "svg_orange");
+            };
+
+            if (jsonfile["bathroom_class"] !== "") {
+                bathroom.classList.add(jsonfile["bathroom_class"]);
+            } else {
+                bathroom.classList.remove("svg_purple", "svg_orange");
+            };
+
+            if (jsonfile["blue_room_class"] !== "") {
+                blue_room.classList.add(jsonfile["blue_room_class"]);
+            } else {
+                blue_room.classList.remove("svg_purple", "svg_orange");
+            };
+
+            if (jsonfile["j_bedroom_class"] !== "") {
+                j_bedroom.classList.add(jsonfile["j_bedroom_class"]);
+            } else {
+                j_bedroom.classList.remove("svg_purple", "svg_orange");
+            };
+
+            if (jsonfile["km_bedroom_class"] !== "") {
+                km_bedroom.classList.add(jsonfile["km_bedroom_class"]);
+            } else  {
+                km_bedroom.classList.remove("svg_purple", "svg_orange");
+            };
+
+            if (jsonfile["top_floor_class"] !== "") {
+                top_floor.classList.add(jsonfile["top_floor_class"]);
+            } else {
+                top_floor.classList.remove("svg_purple", "svg_orange");
+            };
+            
+            time_text.innerHTML = jsonfile["timecode"];
+
+            {% block offcanvas_update %}{% endblock %}
+        };
+    </script>
 {% endblock %}

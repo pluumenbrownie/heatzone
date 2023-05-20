@@ -21,6 +21,7 @@ COLUMN_NAMES = ("timecode",
 "top_floor_requesting", "top_floor_heating", "top_floor_time_heating", "top_floor_delay")
 ROOM_NAMES = ("ground_floor", "bathroom", "blue_room", "j_bedroom", "km_bedroom", "top_floor")
 
+
 app = Flask(__name__, static_url_path="/static")
 
 app.config["SESSION_PERMANENT"] = False
@@ -49,6 +50,11 @@ def fake_index() -> str:
     return render_template("index.html", data_ip="http://127.0.0.1:5000/_get_status")
 
 
+@app.route("/fake/test_canvas")
+def test_canvas() -> str:
+    return render_template("testcanvas.html", data_ip="http://127.0.0.1:5000/_get_status")
+
+
 @app.route("/_get_status")
 def get_status() -> str:
     with engine.begin() as db:
@@ -62,6 +68,7 @@ def get_status() -> str:
         dictionary[name] = value
 
     add_colors_to_dict(dictionary)
+    dictionary.update({"ground_floor_name": "Ground floor", "bathroom_name": "Bathroom", "blue_room_name": "Blue room", "j_bedroom_name": "J bedroom", "km_bedroom_name": "KM bedroom", "top_floor_name": "Top floor"})
     dictionary["timecode"] = time.strftime("%H:%M:%S %d-%m-%Y", time.localtime(float(dictionary["timecode"]) / 10)).__str__()
     
     return json.dumps(dictionary)
@@ -75,5 +82,3 @@ def add_colors_to_dict(dictionary: dict[str, str|int|bool]) -> None:
             dictionary.update({f"{room}_class": "svg_purple"})
         else:
             dictionary.update({f"{room}_class": ""})
-
-    

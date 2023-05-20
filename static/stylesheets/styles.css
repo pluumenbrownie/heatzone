@@ -18,6 +18,7 @@ footer {
 img {
     height: 100%;
     width: 100%;
+    color: #ffffff00;
 }
 
 .floorplan {
@@ -56,4 +57,8 @@ polygon {
     fill: black;
     stroke: none;
     opacity: 0;
+}
+
+.offcanvas {
+    --bs-offcanvas-height: 50vh;
 }
