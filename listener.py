@@ -40,7 +40,7 @@ with serial.Serial(port="/dev/ttyACM0", baudrate=9600, timeout=0.1) as arduino:
     while True:
         read_data = arduino.readline()
 
-        # print(read_data)
+        print(read_data)
         if len(read_data) < 8:
             continue
         elif read_data[0:3] == b"[Th":
