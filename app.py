@@ -42,17 +42,12 @@ def determine_color(heating_zone: HeatingZone) -> str | None:
 
 @app.route("/")
 def index() -> str:
-    return render_template("index.html", data_ip="http://192.168.1.135:5000/_get_status")
-    
-
-@app.route("/fake")
-def fake_index() -> str:
-    return render_template("index.html", data_ip="http://127.0.0.1:5000/_get_status")
+    return render_template("index.html")
 
 
-@app.route("/fake/test_canvas")
-def test_canvas() -> str:
-    return render_template("testcanvas.html", data_ip="http://127.0.0.1:5000/_get_status")
+@app.route("/test_canvas")
+def canvas() -> str:
+    return render_template("testcanvas.html")
 
 
 @app.route("/_get_status")

@@ -4,7 +4,7 @@
 <div class="offcanvas offcanvas-bottom" data-bs-backdrop="false" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
     <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="offcanvasBottomLabel">Offcanvas</h5>
-        <a type="button" class="btn-close" href="/fake"></a>
+        <a type="button" class="btn-close" href="/"></a>
     </div>
     <div class="offcanvas-body" id="offcanvas_inner">
         <div class="container">
@@ -34,7 +34,6 @@
 {% endblock %}
 
 {% block offcanvas_script %}
-        const loc = document.location;
         var myOffcanvas = document.getElementById('offcanvasBottom');
         var bsOffcanvas = new bootstrap.Offcanvas(myOffcanvas);
         var offcanvas_inner = document.getElementById("offcanvas_inner");
