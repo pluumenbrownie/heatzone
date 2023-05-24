@@ -62,3 +62,7 @@ polygon {
 .offcanvas {
     --bs-offcanvas-height: 50vh;
 }
+
+#graph_div{
+    height: 2rem;
+}

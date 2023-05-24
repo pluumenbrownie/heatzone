@@ -28,11 +28,13 @@
                     </tr>
                 </tbody>
             </table>
+            <h5>Past hour:</h5>
+            <div class="container p-0" id="graph_div"></div>
         </div>
     </div>
 </div>
 {% endblock %}
-
+{# <script> #}
 {% block offcanvas_script %}
         var myOffcanvas = document.getElementById('offcanvasBottom');
         var bsOffcanvas = new bootstrap.Offcanvas(myOffcanvas);
@@ -42,32 +44,65 @@
         var time_heating = document.getElementById("time_heating");
         var time_delay = document.getElementById("delay");
         var offcanvas_title = document.getElementById("offcanvasBottomLabel");
-        console.log(loc.hash);
+        var graph = document.getElementById("graph_div");
+        let roomname = loc.hash.slice(1);
+        let graph_ip = loc.origin + "/_get_graph";
+        let counter = 0
         if (loc.hash !== "") {
             bsOffcanvas.show();
         };
 {% endblock %}
 
+{% block run_update %}if (counter == 0) {
+                updateGraph(graph_ip);
+            }
+            counter += 1;
+            counter = counter % 10;{% endblock %}
+
 {% block offcanvas_update %}
-    offcanvas_title.innerHTML = jsonfile[loc.hash.slice(1)+"_name"];
-    if (jsonfile[loc.hash.slice(1)+"_requesting"] == true) {
+    offcanvas_title.innerHTML = jsonfile[roomname+"_name"];
+    if (jsonfile[roomname+"_requesting"] == true) {
         is_requesting.innerHTML = "yes";
     } else {
         is_requesting.innerHTML = "no";
     };
-    if (jsonfile[loc.hash.slice(1)+"_heating"] == true) {
+    if (jsonfile[roomname+"_heating"] == true) {
         is_heating.innerHTML = "yes";
     } else {
         is_heating.innerHTML = "no";
     };
-    if (jsonfile[loc.hash.slice(1)+"_time_heating"] !== "") {
-        time_heating.innerHTML = jsonfile[loc.hash.slice(1)+"_time_heating"];
+    if (jsonfile[roomname+"_time_heating"] !== "") {
+        time_heating.innerHTML = jsonfile[roomname+"_time_heating"];
     } else {
         time_heating.innerHTML = "error";
     };
-    if (jsonfile[loc.hash.slice(1)+"_delay"] !== "") {
-        time_delay.innerHTML = jsonfile[loc.hash.slice(1)+"_delay"];
+    if (jsonfile[roomname+"_delay"] !== "") {
+        time_delay.innerHTML = jsonfile[roomname+"_delay"];
     } else {
         time_delay.innerHTML = "error";
     };
 {% endblock %}
+
+{% block offcanvas_graph %}
+async function updateGraph(link) {
+    fetch(link, { 
+        method: "POST",
+        signal: AbortSignal.timeout(1000),
+        body: JSON.stringify({
+            roomname: roomname
+        }),
+        headers: {"Content-type": "application/json; charset=UTF-8"}
+    })
+    .then((response) => {
+        return response.text()
+    })
+    .then((svg_image) => {
+        if (svg_image !== "") {
+            graph.innerHTML = svg_image;
+        } else {
+            graph.innerHTML = "error";
+        };
+    })
+};
+{% endblock %}
+{# </script> #}

@@ -10,6 +10,7 @@ from flask_session import Session
 from markupsafe import Markup
 
 from classes import *
+import graphs
 
 
 COLUMN_NAMES = ("timecode",
@@ -67,6 +68,17 @@ def get_status() -> str:
     dictionary["timecode"] = time.strftime("%H:%M:%S %d-%m-%Y", time.localtime(float(dictionary["timecode"]) / 10)).__str__()
     
     return json.dumps(dictionary)
+
+
+@app.post("/_get_graph")
+def get_graph() -> str:
+    json = request.json
+    if not json:
+        return ""
+    roomname = json["roomname"]
+    if not roomname:
+        return ""
+    return graphs.one_hour_history(roomname, engine).replace('width="360" height="20"', 'width="100%" height="100%" preserveAspectRatio="none"')
 
 
 def add_colors_to_dict(dictionary: dict[str, str|int|bool]) -> None:

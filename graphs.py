@@ -40,13 +40,13 @@ def one_hour_history(room: str, engine: sql.Engine) -> str:
     graph = draw.Drawing(360, 20)
     for number, timestamp, request, heat in zip(range(len(time_hist)), time_hist, req_hist, heat_hist):
         if not timestamp:
-            graph.append(draw.Rectangle(number, 0, 1, 20, fill=DISCONNECTED))
+            graph.append(draw.Rectangle(number, 0, 1, 20, fill=DISCONNECTED, stroke=DISCONNECTED))
         elif heat:
-            graph.append(draw.Rectangle(number, 0, 1, 20, fill=HEATING))
+            graph.append(draw.Rectangle(number, 0, 1, 20, fill=HEATING, stroke=HEATING))
         elif request:
-            graph.append(draw.Rectangle(number, 0, 1, 20, fill=REQUESTING))
+            graph.append(draw.Rectangle(number, 0, 1, 20, fill=REQUESTING, stroke=REQUESTING))
         else:
-            graph.append(draw.Rectangle(number, 0, 1, 20, fill=INACTIVE))
+            graph.append(draw.Rectangle(number, 0, 1, 20, fill=INACTIVE, stroke=INACTIVE))
     
     svg_output = graph.as_svg(header="")
     if not svg_output:
