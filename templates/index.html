@@ -45,6 +45,8 @@
         var km_bedroom = document.getElementById("KM bedroom");
         var top_floor = document.getElementById("Top floor");
         var time_text = document.getElementById("time");
+        var link = document.getElementById("overview_link");
+        link.classList.add("active");
         let ip = loc.origin + "/_get_status";
         console.log(ip);
         {% block offcanvas_script %}{% endblock %}
