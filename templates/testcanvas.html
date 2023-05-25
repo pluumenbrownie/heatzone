@@ -29,7 +29,7 @@
                 </tbody>
             </table>
             <h5>Past hour:</h5>
-            <div class="container p-0" id="graph_div"></div>
+            <div class="container p-0 graph_div" id="graph_div"></div>
         </div>
     </div>
 </div>
@@ -89,6 +89,7 @@ async function updateGraph(link) {
         method: "POST",
         signal: AbortSignal.timeout(1000),
         body: JSON.stringify({
+            type: "one_hour",
             roomname: roomname
         }),
         headers: {"Content-type": "application/json; charset=UTF-8"}

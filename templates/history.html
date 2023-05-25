@@ -1,0 +1,89 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    indexpage
+{% endblock %}
+
+{% block clockblock %}
+<p id="time" class="mb-0">time</p>
+{% endblock %}
+
+{% block content %}
+<h1> Activity past 24 hours: </h1>
+<h5>Top floor:</h5>
+<div class="container graph_div" id="graph_div_top_floor">Loading...</div>
+<h5>KM bedroom:</h5>
+<div class="container graph_div" id="graph_div_km_bedroom">Loading...</div>
+<h5>Bathroom:</h5>
+<div class="container graph_div" id="graph_div_bathroom">Loading...</div>
+<h5>J bedroom:</h5>
+<div class="container graph_div" id="graph_div_j_bedroom">Loading...</div>
+<h5>Blue room:</h5>
+<div class="container graph_div" id="graph_div_blue_room">Loading...</div>
+<h5>Ground floor:</h5>
+<div class="container graph_div" id="graph_div_ground_floor">Loading...</div>
+
+
+<script>
+        const loc = document.location;
+        var ground_floor = document.getElementById("graph_div_ground_floor");
+        var km_bedroom = document.getElementById("graph_div_km_bedroom");
+        var bathroom = document.getElementById("graph_div_bathroom");
+        var j_bedroom = document.getElementById("graph_div_j_bedroom");
+        var blue_room = document.getElementById("graph_div_blue_room");
+        var top_floor = document.getElementById("graph_div_top_floor");
+        var time_text = document.getElementById("time");
+        var link = document.getElementById("history_link");
+        link.classList.add("active");
+        let ip = loc.origin + "/_get_status";
+        let graph_ip = loc.origin + "/_get_graph"
+        console.log(ip);
+
+        runUpdate();
+        setInterval(runUpdate, 10000);
+
+        function runUpdate() {
+            update(ip);
+            updateGraphs(graph_ip);
+        }
+
+        async function update(link) {
+            fetch(link, { signal: AbortSignal.timeout(1000) })
+                .then((response) => {
+                    return response.json()
+                })
+                .then((jsonfile) => {
+                    time_text.innerHTML = jsonfile["timecode"];   
+            }).catch((error) => {
+                console.error(error)
+            })
+        };
+
+        async function updateGraphs(link) {
+            fetch(link, { 
+                method: "POST",
+                signal: AbortSignal.timeout(10000),
+                body: JSON.stringify({
+                    type: "one_day"
+                }),
+                headers: {"Content-type": "application/json; charset=UTF-8"}
+            })
+            .then((response) => {
+                return response.json()
+            })
+            .then((jsonfile) => {
+                ground_floor.innerHTML = jsonfile["ground_floor"];
+                km_bedroom.innerHTML = jsonfile["km_bedroom"];
+                bathroom.innerHTML = jsonfile["bathroom"];
+                j_bedroom.innerHTML = jsonfile["j_bedroom"];
+                blue_room.innerHTML = jsonfile["blue_room"];
+                top_floor.innerHTML = jsonfile["top_floor"];
+            }).catch((error) => {
+                console.error(error)
+            })
+        };
+
+        {% block offcanvas_graph %}{% endblock %}
+    </script>
+
+{% endblock %}

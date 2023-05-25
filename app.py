@@ -51,6 +51,11 @@ def canvas() -> str:
     return render_template("testcanvas.html")
 
 
+@app.route("/history")
+def history() -> str:
+    return render_template("history.html")
+
+
 @app.route("/_get_status")
 def get_status() -> str:
     with engine.begin() as db:
@@ -72,13 +77,23 @@ def get_status() -> str:
 
 @app.post("/_get_graph")
 def get_graph() -> str:
-    json = request.json
-    if not json:
+    json_request = request.json
+    if not json_request:
         return ""
-    roomname = json["roomname"]
-    if not roomname:
-        return ""
-    return graphs.one_hour_history(roomname, engine).replace('width="360" height="20"', 'width="100%" height="100%" preserveAspectRatio="none"')
+    if json_request["type"] == "one_hour":
+        roomname = json_request["roomname"]
+        if not roomname:
+            return ""
+        return graphs.one_hour_history(roomname, engine).replace('width="360" height="20"', 'width="100%" height="100%" preserveAspectRatio="none"')
+    elif json_request["type"] == "one_day":
+        # start_time = time.time()
+        json_graphs = graphs.day_history(engine)
+        for key in json_graphs.keys():
+            json_graphs[key] = json_graphs[key].replace('width="360" height="20"', 'width="100%" height="100%" preserveAspectRatio="none"', 1)
+        # print(f"Took {time.time() - start_time:.3f} s")
+        return json.dumps(json_graphs)
+    
+    return ""
 
 
 def add_colors_to_dict(dictionary: dict[str, str|int|bool]) -> None:
