@@ -28,12 +28,12 @@ top_floor_requesting, top_floor_heating"
 def one_hour_history(room: str, engine: sql.Engine) -> str:
     start = time.time()
     with engine.begin() as db:
-        command = sql.text(f"SELECT {DAY_COLUMNS_RETURNED} FROM direct_history ORDER BY timecode DESC LIMIT 3600")
-        output = db.execute(command).all()
+        command = sql.text("SELECT * FROM direct_history ORDER BY timecode DESC LIMIT 3600")
+        output = db.execute(command)
     end = time.time()
-    print(f"Took {end - start:.3f} s to get {len(output)} entries.")
 
-    output = [row._asdict() for row in output]
+    output = output.mappings().all()
+    print(f"Took {end - start:.3f} s to get {len(output)} entries.")
 
     now = time.time()
     past_hour = now - HOUR
@@ -66,11 +66,11 @@ def day_history(engine: sql.Engine) -> dict[str, str]:
     start = time.time()
     with engine.begin() as db:
         command = sql.text(f"SELECT {DAY_COLUMNS_RETURNED} FROM direct_history ORDER BY timecode DESC LIMIT 86400")
-        output = db.execute(command).all()
+        output = db.execute(command)
     end = time.time()
-    print(f"Took {end - start:.3f} s to get {len(output)} entries.")
 
-    output = [row._asdict() for row in output]
+    output = output.mappings().all()
+    print(f"Took {end - start:.3f} s to get {len(output)} entries.")
 
     now = time.time()
     past_day = now - HOUR * 25
@@ -99,6 +99,7 @@ def day_history(engine: sql.Engine) -> dict[str, str]:
         if not svg_output:
             raise ValueError("Drawing failed")
         output_list[room] = svg_output
+    print(f"Total time: {time.time() - start:.3f} s.")
     return output_list
 
 
@@ -107,7 +108,7 @@ if __name__ == '__main__':
     password = getpass.getpass("Database password: ")
     engine = sql.create_engine(f"postgresql+psycopg2://{username}:{password}@localhost/heating")
     roomname = "km_bedroom"
-    print(one_hour_history(roomname, engine))
+    day_history(engine)
 
 
 
