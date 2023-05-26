@@ -43,7 +43,7 @@
         setInterval(runUpdate, 30000);
 
         function runUpdate() {
-            if (document.hasFocus()) {
+            if (!document.hidden) {
                 update(ip);
                 updateGraphs(graph_ip);
             };

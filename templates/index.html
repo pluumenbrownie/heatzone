@@ -54,7 +54,7 @@
         setInterval(runUpdate, 1000);
 
         function runUpdate() {
-            if (document.hasFocus()) {
+            if (!document.hidden) {
                 update(ip);
                 {% block run_update %}{% endblock %}
             };
