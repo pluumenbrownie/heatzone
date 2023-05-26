@@ -15,7 +15,8 @@ DISCONNECTED = "#717171"
 INACTIVE = "#CCCCCC"
 REQUESTING = "#C017B5"
 HEATING = "#D78200"
-ROOM_LIST = ["top_floor", "km_bedroom", "bathroom", "j_bedroom", "blue_room", "ground_floor"]
+ROOM_LIST = ["ground_floor", "bathroom", "blue_room", "j_bedroom", "km_bedroom", "top_floor"]
+ROOM_LIST_NUMBERS = [1, 3, 5, 7, 9, 11]
 DAY_COLUMNS_RETURNED = "timecode, \
 ground_floor_requesting, ground_floor_heating, \
 bathroom_requesting, bathroom_heating, \
@@ -69,16 +70,16 @@ def day_history(engine: sql.Engine) -> dict[str, str]:
         output = db.execute(command)
     end = time.time()
 
-    output = output.mappings().all()
+    output = output.all()
     print(f"Took {end - start:.3f} s to get {len(output)} entries.")
 
     now = time.time()
     past_day = now - HOUR * 25
-    times = [row["timecode"]/10 for row in output]
+    times = [row[0]/10 for row in output]
     output_list: dict[str, str] = {}
-    for room in ROOM_LIST:
-        requests = [int(row[f"{room}_requesting"]) for row in output]
-        heating = [int(row[f"{room}_heating"]) for row in output]
+    for room, roomname in zip(ROOM_LIST_NUMBERS, ROOM_LIST):
+        requests = [int(row[room]) for row in output]
+        heating = [int(row[room + 1]) for row in output]
 
         time_hist, _ = np.histogram(times, PARTITIONS, (past_day, now))
         req_hist, _  = np.histogram(times, PARTITIONS, (past_day, now), weights=requests)
@@ -98,7 +99,7 @@ def day_history(engine: sql.Engine) -> dict[str, str]:
         svg_output = graph.as_svg(header="")
         if not svg_output:
             raise ValueError("Drawing failed")
-        output_list[room] = svg_output
+        output_list[roomname] = svg_output
     print(f"Total time: {time.time() - start:.3f} s.")
     return output_list
 
