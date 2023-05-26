@@ -43,8 +43,10 @@
         setInterval(runUpdate, 30000);
 
         function runUpdate() {
-            update(ip);
-            updateGraphs(graph_ip);
+            if (document.hasFocus()) {
+                update(ip);
+                updateGraphs(graph_ip);
+            };
         }
 
         async function update(link) {

@@ -54,8 +54,10 @@
         setInterval(runUpdate, 1000);
 
         function runUpdate() {
-            update(ip);
-            {% block run_update %}{% endblock %}
+            if (document.hasFocus()) {
+                update(ip);
+                {% block run_update %}{% endblock %}
+            };
         }
 
         function updateRoom(room, color) {
