@@ -28,7 +28,7 @@ top_floor_requesting, top_floor_heating"
 def one_hour_history(room: str, engine: sql.Engine) -> str:
     start = time.time()
     with engine.begin() as db:
-        command = sql.text("SELECT {DAY_COLUMNS_RETURNED} FROM direct_history ORDER BY timecode DESC LIMIT 3600")
+        command = sql.text(f"SELECT {DAY_COLUMNS_RETURNED} FROM direct_history ORDER BY timecode DESC LIMIT 3600")
         output = db.execute(command).all()
     end = time.time()
     print(f"Took {end - start:.3f} s to get {len(output)} entries.")
