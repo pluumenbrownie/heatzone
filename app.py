@@ -4,7 +4,7 @@ import time
 import getpass
 
 import sqlalchemy as sql
-from flask import Flask, flash, render_template, request
+from flask import Flask, render_template, request
 from flask_session import Session
 
 from classes import *

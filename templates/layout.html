@@ -14,35 +14,20 @@
     </head>
 
     <body>
-        <nav class="bg-light border navbar navbar-expand-md navbar-light">
+        <nav class="navbar navbar-expand-md bg-light border">
             <div class="container-fluid">   
-                <button aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbar" data-bs-toggle="collapse" type="button">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar_stuff" aria-controls="navbar_stuff" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse text-start" id="navbar">
+
+                <div class="collapse navbar-collapse " id="navbar_stuff">
                     <ul class="navbar-nav mr-auto me-auto mb-lg-0 text-start">
                         <li class="nav-item"> <a id="overview_link" class="nav-link" href="/"> Overview </a></li>
                         <li class="nav-item"> <a id="history_link"  class="nav-link" href="/history"> History </a></li>
                     </ul>
                 </div>
+
                 <span class="navbar-brand mb-0 h1"> {% block clockblock %}{% endblock %} </span>
-            <!-- {% if session["user_id"] %}
-                <ul class="navbar-nav me-auto mt-2">
-                    <li class="nav-item"><a class="nav-link" href="/search">Search</a></li>
-                </ul>
-                <ul class="navbar-nav ms-auto mt-2">
-                    <li class="nav-item nav-link"><p class="fw-normal">{{ session["username"] }}</p></li>
-                    <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
-                </ul>
-            {% else %}
-                <ul class="navbar-nav me-auto mt-2">
-                    <li class="nav-item"><a class="nav-link" href="/search">Search</a></li>
-                </ul>
-                <ul class="navbar-nav ms-auto mt-2">
-                    <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/login">Log In</a></li>
-                </ul>
-            {% endif %} -->
             </div>
         </nav>
 
@@ -54,7 +39,7 @@
         </header>
     {% endif %}
 
-        <main class="container-fluid py-5 text-center">
+        <main class="container-fluid py-2 text-center">
             {% block content %}{% endblock %}
         </main>
 

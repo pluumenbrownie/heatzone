@@ -3,9 +3,9 @@ body {
     height: 100vh;
 }
 
-nav {
+/* nav {
     height: 4em;
-}
+} */
 
 main {
     height: calc(100% - 7em);
