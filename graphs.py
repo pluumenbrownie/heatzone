@@ -110,24 +110,3 @@ if __name__ == '__main__':
     engine = sql.create_engine(f"postgresql+psycopg2://{username}:{password}@localhost/heating")
     roomname = "km_bedroom"
     day_history(engine)
-
-
-
-# print(time.localtime(output[0]["timecode"]/10))
-# dt = datetime.datetime.fromtimestamp(output[0]["timecode"]/10)
-# now = datetime.datetime.now(tz=TZ)
-# delta = datetime.timedelta(hours=1)
-# minushour = now.replace(hour=0, minute=0, second=0, microsecond=0)
-# print(time1)
-# # delta = datetime.timedelta(minutes=24*60*57+14*60)
-# # newdt = dt - delta
-# time2 = time1.replace(month=3, day=26)
-# print(time2)
-# delta = time1 - time2
-# print(delta)
-# timestamp1 = time1.timestamp()
-# print(timestamp1)
-# timestamp2 = time2.timestamp()
-# print(timestamp2)
-# delta2 = datetime.timedelta(seconds=timestamp1-timestamp2)
-# print(delta2)

@@ -1,13 +1,11 @@
 
-import os
 import json
 import time
 import getpass
 
 import sqlalchemy as sql
-from flask import Flask, flash, session, redirect, render_template, request
+from flask import Flask, flash, render_template, request
 from flask_session import Session
-from markupsafe import Markup
 
 from classes import *
 import graphs

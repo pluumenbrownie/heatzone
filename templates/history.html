@@ -23,21 +23,21 @@
 <h5>Ground floor:</h5>
 <div class="container graph_div" id="graph_div_ground_floor">Loading...</div>
 
-
 <script>
         const loc = document.location;
+        var time_text = document.getElementById("time");
+        var link = document.getElementById("history_link");
+        link.classList.add("active");
+        let ip = loc.origin + "/_get_status";
+        let graph_ip = loc.origin + "/_get_graph"
+</script>
+<script>
         var ground_floor = document.getElementById("graph_div_ground_floor");
         var km_bedroom = document.getElementById("graph_div_km_bedroom");
         var bathroom = document.getElementById("graph_div_bathroom");
         var j_bedroom = document.getElementById("graph_div_j_bedroom");
         var blue_room = document.getElementById("graph_div_blue_room");
         var top_floor = document.getElementById("graph_div_top_floor");
-        var time_text = document.getElementById("time");
-        var link = document.getElementById("history_link");
-        link.classList.add("active");
-        let ip = loc.origin + "/_get_status";
-        let graph_ip = loc.origin + "/_get_graph"
-        console.log(ip);
 
         runUpdate();
         setInterval(runUpdate, 30000);
@@ -84,8 +84,6 @@
                 console.error(error)
             })
         };
-
-        {% block offcanvas_graph %}{% endblock %}
     </script>
 
 {% endblock %}
