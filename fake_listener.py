@@ -47,7 +47,7 @@ class FakeArduino():
                         time.sleep(0.18)
                     yield line
     
-    def readline(self):
+    def readline(self) -> bytes:
         return self.gen.__next__()
 
 
