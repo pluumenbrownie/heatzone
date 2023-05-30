@@ -7,3 +7,4 @@ j_bedroom_requesting boolean, j_bedroom_heating boolean, j_bedroom_time_heating 
 km_bedroom_requesting boolean, km_bedroom_heating boolean, km_bedroom_time_heating integer, km_bedroom_delay smallint, 
 top_floor_requesting boolean, top_floor_heating boolean, top_floor_time_heating integer, top_floor_delay smallint
 );
+CREATE INDEX history_timecode ON direct_history(timecode);
