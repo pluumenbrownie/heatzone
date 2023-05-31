@@ -43,17 +43,26 @@ with serial.Serial(port="/dev/ttyACM0", baudrate=9600, timeout=0.1) as arduino:
         if not read_data == b'':
             print(read_data)
         if len(read_data) < 8:
+            # ignored lines
             continue
         elif read_data[0:3] == b"[Th":
+            # requesting info
             split_per_thermostat = read_data.split(b":")
             for zone, status in zip(heating_zone, split_per_thermostat[1:7]):
                 zone.requesting = True if status[0:1] == b"1" else False
+            # full_cycle enshures a full cycle has been read when writing to db
             full_cycle = True
+        # one char slices are required for these checks 
         elif read_data[2:3] == b"]":
+            # heating info (6 lines)
             zone_nr: int = int(read_data[1:2])
-            numbers = re.findall(br"\d+", read_data[3:])
+            # find second number in line
+            # borrowed from Vincent Savard https://stackoverflow.com/questions/4289331/how-to-extract-numbers-from-a-string-in-python
+            numbers = re.findall(rb"\d+", read_data[3:])
             heating_zone[zone_nr].time_heating = int(numbers[0])
             heating_zone[zone_nr].delay = int(numbers[1])
+            # determine if room is heated (this contains a bug: can't detect room is heated
+            # when it switches from requested heating to delayed heating for a second)
             if (
                 heating_zone[zone_nr].time_heating == 0
                 and heating_zone[zone_nr].delay == 600
@@ -61,13 +70,16 @@ with serial.Serial(port="/dev/ttyACM0", baudrate=9600, timeout=0.1) as arduino:
                 heating_zone[zone_nr].heating = False
             else:
                 heating_zone[zone_nr].heating = True
+
+        # write to db
         if read_data[0:3] == b"[5]" and full_cycle:
             timecode = round(time.time() * 10)
-            dbdict: dict[str, bool|int] = {"timecode": timecode}
+            dbdict: dict[str, bool | int] = {"timecode": timecode}
             for zone in heating_zone:
                 dbdict.update(zone.database_dict())
+
             with engine.begin() as db:
                 command = sql.text(
                     f"INSERT INTO direct_history {COLUMN_NAMES} VALUES {INSERT_VALUE_STRING}"
-                    )
+                )
                 db.execute(command, dbdict)
