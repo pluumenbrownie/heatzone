@@ -1,6 +1,20 @@
-# project-pluumenbrownie
+# Heatzone by pluumenbrownie/Wessel Beumer
+This project allows us to observe the status of the floor heating in our house,
+both in the present and the past.
 
-Voor iedereen niet in mijn huis: check of de app.py serial_faker_thread gebruikt!
+![Screenshot of the overview page of the app.](Overview.png)
+![Screenshot of the details canvas.](canvas.png)
+![Screenshot of the history page.](history.png)
+
+The valves of the floor heating system in our house are managed by a homemade 
+system, based on an arduino. This system is not very transparent, however, and
+that's where this app comes in. This website/app allows us at home to get 
+better insight into the status of our home heating to anyone connected to our
+WiFi network. 
+
+
+
+
 
 # Postgres links:
 https://www.geeksforgeeks.org/postgresql-psql-commands/
