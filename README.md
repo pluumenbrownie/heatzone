@@ -15,7 +15,8 @@ WiFi network.
 This project can be split up in two parts:
  1. The listener
  1. The webinterface
-This split architecture allows me to, for example, update the website without 
+
+This split architecture allows you to, for example, update the website without 
 having to stop the data collection of the listener. 
 
 # Installation
@@ -57,7 +58,11 @@ I used `tmux` to be able to run multiple programs side-by-side. When installed, 
 tmux new -s listener
 ```
 to create a new session called *listener*. In this session, activate the correct
-conda enviroment and run the `python listener.py` to start the listener. You 
+conda enviroment and run the 
+```
+python listener.py
+```
+to start the listener. You 
 should be prompted for the database password for your user. If set up correctly,
 the program should now start collecting and storing data, and print recieved data
 to the console. Detach from the tmux screen by quickly pressing `Ctrl+b` and then 
@@ -69,7 +74,7 @@ Here are more links to help with using tmux:
  - https://www.howtogeek.com/671422/how-to-use-tmux-on-linux-and-why-its-better-than-screen/
  - https://superuser.com/questions/209437/how-do-i-scroll-in-
  
-## flask and everything else
+## Flask and everything else
 To get the website up, start a new tmux session named *flask* with
 ```
 tmux new -s flask
@@ -80,7 +85,8 @@ flask run --host=0.0.0.0
 ```
 to expose the website to your entire local network. You will also be reprompted to 
 give your database password. The website should now be available on `*local ip 
-address*:5000`. Flask should show your local ip upon startup.
+address*:5000` (flask should show this address when started). Now detach from the
+tmux session.
 
 Everything should now be running. If you are running these programs on a laptop,
 you might want to be able to turn of it's screen. Try one of the methods in this
