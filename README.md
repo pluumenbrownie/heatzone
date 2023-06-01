@@ -93,5 +93,10 @@ you might want to be able to turn of it's screen. Try one of the methods in this
 discussion for this:
 https://askubuntu.com/questions/62858/turn-off-monitor-using-command-line
 
-Also, this project uses PySerial to communicate with the arduino: 
+# Thanks and acknowledgements
+Thanks to my dad for providing and walking me through the arduino source code and 
+helping me with the home networking. 
+Additional thanks go out to the assistants of the programmeren minor and the 
+creators of the modules used for this project.
+This project uses PySerial to communicate with the arduino: 
 https://pyserial.readthedocs.io/en/latest/examples.html
