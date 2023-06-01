@@ -3,8 +3,8 @@ This project allows us to observe the status of the floor heating in our house,
 both in the present and the past.
 
 ![Screenshot of the overview page of the app.](Overview_small.png)
-![Screenshot of the details canvas.](canvas.png)
-![Screenshot of the history page.](history.png)
+![Screenshot of the details canvas.](canvas_small.png)
+![Screenshot of the history page.](history_small.png)
 
 The valves of the floor heating system in our house are managed by a homemade 
 system, based on an arduino. This system is not very transparent, however, and
