@@ -1,6 +1,7 @@
 # Heatzone by pluumenbrownie/Wessel Beumer
 This project allows us to observe the status of the floor heating in our house,
 both in the present and the past.
+![Link to Screencast Video](https://video.uva.nl/media/Screencast+Heatzone/0_bw7omxa6)
 
 ![Screenshot of the overview page of the app.](repo_images/Overview_small.png)
 ![Screenshot of the details canvas.](repo_images/canvas_small.png)
