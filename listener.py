@@ -3,6 +3,7 @@ import time
 import re
 from classes import *
 import sqlalchemy as sql
+from sqlalchemy.exc import OperationalError
 import getpass
 
 
@@ -78,8 +79,17 @@ with serial.Serial(port="/dev/ttyACM0", baudrate=9600, timeout=0.1) as arduino:
             for zone in heating_zone:
                 dbdict.update(zone.database_dict())
 
-            with engine.begin() as db:
-                command = sql.text(
-                    f"INSERT INTO direct_history {COLUMN_NAMES} VALUES {INSERT_VALUE_STRING}"
-                )
-                db.execute(command, dbdict)
+            try:
+                with engine.begin() as db:
+                    command = sql.text(
+                        f"INSERT INTO direct_history {COLUMN_NAMES} VALUES {INSERT_VALUE_STRING}"
+                    )
+                    db.execute(command, dbdict)
+            except OperationalError:
+                # retry when writing to db fails
+                time.sleep(0.1)
+                with engine.begin() as db:
+                    command = sql.text(
+                        f"INSERT INTO direct_history {COLUMN_NAMES} VALUES {INSERT_VALUE_STRING}"
+                    )
+                    db.execute(command, dbdict)
