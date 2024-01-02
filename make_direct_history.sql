@@ -8,3 +8,6 @@ km_bedroom_requesting boolean, km_bedroom_heating boolean, km_bedroom_time_heati
 top_floor_requesting boolean, top_floor_heating boolean, top_floor_time_heating integer, top_floor_delay smallint
 );
 CREATE INDEX history_timecode ON direct_history(timecode);
+
+CREATE TABLE discord_admins (user_id bigint);
+INSERT INTO discord_admins VALUES (<discord_id>);
